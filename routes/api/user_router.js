@@ -1,20 +1,22 @@
 /*
- * @Author: kuangxj 
- * @Email: frankxjkuang@gmail.com 
- * @Date: 2018-08-14 16:04:18 
- * @Last Modified by: kaungxj
- * @Last Modified time: 2018-08-20 16:05:40
- * @Description: user router
- */
+ *  * IMT-project
+ *   */
 
-const Router = require('koa-router');
+const Router = require("koa-router");
 const router = new Router();
-const user_controller = require('./../../app/controllers/user_controller');
+const getwebqualitydata = require("./../../app/controllers/getwebqualitydata");
 
-router.get('/get', user_controller.get);
-router.post('/post', user_controller.post);
-router.post('/login', user_controller.login);
-router.post('/register', user_controller.register);
-router.post('/update/user', user_controller.updateUserInfo);
+// getproandsug
+
+const getproandsug = require("./../../app/controllers/getproandsug");
+
+//router.post("/upload", user_controller.upload);
+// insertdata, // 一键拉取
+// getalldata,
+
+router.get("/api/getnewquailtydata", getwebqualitydata.getnewquailtydata);
+
+router.get("/api/getalldata", getproandsug.getalldata);
+router.post("/api/insertdata", getproandsug.insertdata);
 
 module.exports = router;

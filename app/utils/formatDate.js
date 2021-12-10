@@ -1,10 +1,5 @@
 /*
- * @Author: kuangxj 
- * @Email: frankxjkuang@gmail.com 
- * @Date: 2018-08-22 11:20:39 
- * @Last Modified by:   kaungxj 
- * @Last Modified time: 2018-08-22 11:20:39 
- * @Description: formatDate 
+ * IMT-project
  */
 
 const formatDate = date => {
