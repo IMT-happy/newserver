@@ -14,3 +14,22 @@ MongoClient.connect(
     });
   }
 );
+
+MongoClient.connect(
+  url,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err, db) {
+    if (err) throw err;
+    var mysort = { date: -1 };
+    var dbo = db.db("qualitydb");
+    dbo
+      .collection("eachquality")
+      .find({})
+      .sort(mysort)
+      .toArray(function (err, result) {
+        if (err) throw err;
+        console.log(result);
+        db.close();
+      });
+  }
+);

@@ -55,10 +55,12 @@ const getdatafromdbeach = () => {
         function (err, db) {
           if (err) throw err;
           var dbo = db.db("qualitydb");
+          var mysort = { date: -1 };
           var whereStr = { name: "bilibili" };
           dbo
             .collection("eachquality")
             .find(whereStr)
+            .sort(mysort)
             .limit(20)
             .toArray(function (err, result) {
               if (err) {
