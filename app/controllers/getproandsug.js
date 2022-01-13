@@ -40,7 +40,7 @@ const getdatafromdb = () => {
     }
   });
 };
-const insertdatatodb = (rname, rdesc) => {
+const insertdatatodb = (rid, rname, rdesc, rcount) => {
   return new Promise((res, rej) => {
     try {
       console.log("start get");
@@ -51,8 +51,10 @@ const insertdatatodb = (rname, rdesc) => {
           if (err) throw err;
           var dbo = db.db("newproject");
           var myobj = {
+            id: rid,
             name: rname,
             desc: rdesc,
+            count: rcount,
             date: formate(new Date()),
           };
           dbo
@@ -76,7 +78,12 @@ const insertdata = async (ctx, next) => {
   try {
     console.log("start insert");
     const req = ctx.request.body;
-    const resultdata = await insertdatatodb(req.name, req.desc).then((data) => {
+    const resultdata = await insertdatatodb(
+      req.id,
+      req.name,
+      req.desc,
+      req.count
+    ).then((data) => {
       return data;
     });
     if (resultdata) {
