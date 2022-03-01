@@ -114,14 +114,14 @@ const getnewquailtydata = async (ctx, next) => {
     } else {
       ctx.body = {
         code: 400,
-        msg: "哦哦~服务好像开小差了...尝试联系管理员吧",
+        msg: "哦哦~服务好像开小差了...尝试联系IMT吧",
       };
     }
   } catch (e) {
     console.log(e + "//////////");
     ctx.body = {
       code: 404,
-      msg: "服务解析失败，请联系管理员检查服务且稍后再试",
+      msg: "服务解析失败，请联系IMT检查服务且稍后再试",
     };
   }
 };
