@@ -7,7 +7,6 @@ const router = new Router();
 const getwebqualitydata = require("./../../app/controllers/getwebqualitydata");
 
 // getproandsug
-
 const getproandsug = require("./../../app/controllers/getproandsug");
 
 // smoketest
@@ -18,6 +17,7 @@ const smokeonline = require("./../../app/controllers/smokeonline");
 // getalldata,
 
 router.get("/api/getnewquailtydata", getwebqualitydata.getnewquailtydata);
+router.get("/api/changeneeddata", getwebqualitydata.changeneeddata);
 
 router.get("/api/getalldata", getproandsug.getalldata);
 router.post("/api/insertdata", getproandsug.insertdata);
