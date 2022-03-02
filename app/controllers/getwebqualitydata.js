@@ -20,7 +20,7 @@ const getdatafromdb = () => {
             .collection("eachquality")
             .find()
             .sort(mysort)
-            .limit(6)
+            .limit(7)
             .toArray(function (err, result) {
               if (err) {
                 return err;
