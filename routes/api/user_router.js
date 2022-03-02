@@ -17,7 +17,7 @@ const smokeonline = require("./../../app/controllers/smokeonline");
 // getalldata,
 
 router.get("/api/getnewquailtydata", getwebqualitydata.getnewquailtydata);
-router.get("/api/changeneeddata", getwebqualitydata.changeneeddata);
+router.post("/api/changeneeddata", getwebqualitydata.changeneeddata);
 
 router.get("/api/getalldata", getproandsug.getalldata);
 router.post("/api/insertdata", getproandsug.insertdata);
