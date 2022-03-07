@@ -8,7 +8,7 @@ MongoClient.connect(
     if (err) throw err;
     console.log("数据库已创建");
     var dbase = db.db("newproject");
-    dbase.createCollection("webcasetag", function (err, res) {
+    dbase.createCollection("webcase", function (err, res) {
       if (err) throw err;
       console.log("创建集合!");
       db.close();
