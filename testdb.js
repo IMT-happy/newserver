@@ -1,20 +1,20 @@
 var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://localhost:27017";
 const formate = require("./app/utils/formatDate");
-MongoClient.connect(
-  url,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  function (err, db) {
-    if (err) throw err;
-    console.log("数据库已创建");
-    var dbase = db.db("newproject");
-    dbase.createCollection("webcase", function (err, res) {
-      if (err) throw err;
-      console.log("创建集合!");
-      db.close();
-    });
-  }
-);
+// MongoClient.connect(
+//   url,
+//   { useNewUrlParser: true, useUnifiedTopology: true },
+//   function (err, db) {
+//     if (err) throw err;
+//     console.log("数据库已创建");
+//     var dbase = db.db("newproject");
+//     dbase.createCollection("webcase", function (err, res) {
+//       if (err) throw err;
+//       console.log("创建集合!");
+//       db.close();
+//     });
+//   }
+// );
 
 // MongoClient.connect(
 //   url,
@@ -52,21 +52,21 @@ MongoClient.connect(
 //   }
 // );
 
-// MongoClient.connect(
-//   url,
-//   { useNewUrlParser: true, useUnifiedTopology: true },
-//   function (err, db) {
-//     if (err) throw err;
-//     var dbo = db.db("newproject");
-//     var myobj = {
-//       id: 0,
-//       name: "查看全部",
-//       date: formate(new Date()),
-//     };
-//     dbo.collection("webcasetag").insertOne(myobj, function (err, result) {
-//       if (err) throw err;
-//       console.log("webcasetag插入成功");
-//       db.close();
-//     });
-//   }
-// );
+MongoClient.connect(
+  url,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("newproject");
+    var myobj = {
+      id: 0,
+      name: "查看全部",
+      date: formate(new Date()),
+    };
+    dbo.collection("webcasetag").insertOne(myobj, function (err, result) {
+      if (err) throw err;
+      console.log("webcasetag插入成功");
+      db.close();
+    });
+  }
+);
