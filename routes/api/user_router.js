@@ -15,6 +15,10 @@ const smokeonline = require("./../../app/controllers/smokeonline");
 // webcase
 const webcase = require("./../../app/controllers/webcase");
 
+// videofuzzresultdata
+
+const videofuzz = require("./../../app/controllers/videofuzz");
+
 //router.post("/upload", user_controller.upload);
 // insertdata, // 一键拉取
 // getalldata,
@@ -34,5 +38,9 @@ router.post("/api/getallcasedata", webcase.getallcasedata);
 router.post("/api/insertcasedata", webcase.insertcasedata);
 router.post("/api/editcase", webcase.editcase);
 // router.post("/api/getneedcasedata", webcase.getneedcasedata);
+
+// videofuzzresultdata
+router.get("/api/runvideofuzz", videofuzz.runvideofuzz);
+router.get("/api/getfuzzdata", videofuzz.getfuzzdata);
 
 module.exports = router;
