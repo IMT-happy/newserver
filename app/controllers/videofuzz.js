@@ -2,7 +2,7 @@
  * IMT project
  */
 const puppeteer = require("puppeteer");
-const imgurl = "/Users/guchenghuan/onlineserver/img/";
+const imgurl = "/data1/newproserver/img/";
 const formate = require("../utils/formatDate");
 const fs = require("fs");
 var request = require("request");
