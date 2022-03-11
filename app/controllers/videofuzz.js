@@ -18,8 +18,7 @@ const lunchibj = {
   defaultViewport: null,
   args: ["--unhandled-rejections=strict", "--start-maximized"],
   ignoreDefaultArgs: ["--enable-automation"],
-  executablePath:
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  executablePath: "/usr/bin/google-chrome", // /usr/bin/google-chrome
 };
 
 const runfuzz = async (type) => {
