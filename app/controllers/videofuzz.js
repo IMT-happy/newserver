@@ -2,7 +2,7 @@
  * IMT project
  */
 const puppeteer = require("puppeteer");
-const imgurl = "/Users/guchenghuan/onlineserver/img/";
+const imgurl = "/data1/newproserver/img/";
 const formate = require("../utils/formatDate");
 const fs = require("fs");
 var request = require("request");
@@ -18,8 +18,7 @@ const lunchibj = {
   defaultViewport: null,
   args: ["--unhandled-rejections=strict", "--start-maximized"],
   ignoreDefaultArgs: ["--enable-automation"],
-  executablePath:
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", // /usr/bin/google-chrome
+  executablePath: "/usr/bin/google-chrome", // /usr/bin/google-chrome
 };
 
 const runfuzz = async (type) => {
