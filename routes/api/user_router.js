@@ -19,6 +19,9 @@ const webcase = require("./../../app/controllers/webcase");
 
 const videofuzz = require("./../../app/controllers/videofuzz");
 
+// webcoverage
+const webcoverage = require("./../../app/controllers/webcoverage");
+
 //router.post("/upload", user_controller.upload);
 // insertdata, // 一键拉取
 // getalldata,
@@ -42,5 +45,13 @@ router.post("/api/editcase", webcase.editcase);
 // videofuzzresultdata
 router.get("/api/runvideofuzz", videofuzz.runvideofuzz);
 router.get("/api/getfuzzdata", videofuzz.getfuzzdata);
+
+//coverage
+router.post("/api/insertcoverage", webcoverage.insertcoverage);
+router.post("/api/editcoverage", webcoverage.editcoverage);
+router.post("/api/getAllcoverage", webcoverage.getAllcoverage);
+router.post("/api/searchcoverage", webcoverage.searchcoverage);
+router.post("/api/tooglecoverage", webcoverage.tooglecoverage);
+router.post("/api/getnewfile", webcoverage.getnewfile);
 
 module.exports = router;
