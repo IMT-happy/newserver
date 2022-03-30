@@ -13,7 +13,7 @@ const typedescs = require("../utils/typesdesc");
 var MongoClient = require("mongodb").MongoClient;
 const mongourl = "mongodb://127.0.0.1:27017/";
 const lunchobj = {
-  headless: false, // 开启界面,
+  headless: true, // 开启界面,
   timeout: 30 * 1000,
   //   devtools: true, // 开启开发者控制台
   //设置每个步骤放慢200毫秒
