@@ -22,6 +22,9 @@ const videofuzz = require("./../../app/controllers/videofuzz");
 // webcoverage
 const webcoverage = require("./../../app/controllers/webcoverage");
 
+// webfuzz
+const webfuzz = require("./../../app/controllers/webfuzzserver");
+
 //router.post("/upload", user_controller.upload);
 // insertdata, // 一键拉取
 // getalldata,
@@ -53,5 +56,11 @@ router.post("/api/getAllcoverage", webcoverage.getAllcoverage);
 router.post("/api/searchcoverage", webcoverage.searchcoverage);
 router.post("/api/tooglecoverage", webcoverage.tooglecoverage);
 router.post("/api/getnewfile", webcoverage.getnewfile);
+
+// webfuzz webfuzz
+router.post("/api/insertwebfuzz", webfuzz.insertwebfuzz);
+router.post("/api/getwebfuzz", webfuzz.getwebfuzz);
+router.post("/api/webfuzzrun", webfuzz.webfuzzrun);
+router.post("/api/getfuzzinfo", webfuzz.getfuzzinfo);
 
 module.exports = router;

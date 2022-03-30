@@ -62,32 +62,40 @@ const runfuzz = async (type) => {
           await page.setRequestInterception(true);
           //   await delay(3000);
           page.on("request", async (req) => {
-            if (req.url().includes("m4s")) {
-              await req.abort();
-            } else {
-              await req.continue();
+            try {
+              if (req.url().includes("m4s")) {
+                await req.abort();
+              } else {
+                await req.continue();
+              }
+            } catch (err) {
+              await browser.close();
             }
           });
           page.on("requestfailed", async (req) => {
-            errcount = errcount + 1;
-            if (errcount > 15) {
-              const pngpath = imgurl + type + ".png";
-              await page.screenshot({
-                path: pngpath,
-                // fullPage: true,
-              });
-              await browser.close();
-              await imgtransfertohttp(type, pngpath);
-              await delay(2000);
-              num = num + 1;
-              if (num > 5) {
-                console.log("done");
-                requestnum = 0;
-              } else {
-                (async () => {
-                  runfuzz(tmp[num]);
-                })();
+            try {
+              errcount = errcount + 1;
+              if (errcount > 15) {
+                const pngpath = imgurl + type + ".png";
+                await page.screenshot({
+                  path: pngpath,
+                  // fullPage: true,
+                });
+                await browser.close();
+                await imgtransfertohttp(type, pngpath);
+                await delay(2000);
+                num = num + 1;
+                if (num > 5) {
+                  console.log("done");
+                  requestnum = 0;
+                } else {
+                  (async () => {
+                    runfuzz(tmp[num]);
+                  })();
+                }
               }
+            } catch (err) {
+              await browser.close();
             }
           });
         } else {
@@ -95,83 +103,132 @@ const runfuzz = async (type) => {
             await page.setRequestInterception(true);
             // test satrt all requests fail
             if (type === "all") {
-              page.on("request", async (req) => {
-                if (
-                  [
-                    // "xhr",
-                    "image",
-                    // "media",
-                    "font",
-                    "stylesheet",
-                    // "script",
-                    "webp",
-                  ].indexOf(req.resourceType()) !== -1
-                ) {
-                  await req.abort();
-                } else {
-                  await req.continue();
-                }
-              });
+              try {
+                page.on("request", async (req) => {
+                  if (
+                    [
+                      // "xhr",
+                      "image",
+                      // "media",
+                      "font",
+                      "stylesheet",
+                      // "script",
+                      "webp",
+                    ].indexOf(req.resourceType()) !== -1
+                  ) {
+                    await req.abort();
+                  } else {
+                    await req.continue();
+                  }
+                });
+              } catch (err) {
+                await browser.close();
+              }
             } else if (type === "header") {
-              // test edit request headers fail
-              page.on("request", async (req) => {
-                if (req.url().includes("m4s")) {
-                  let headers = await req.headers();
-                  headers["range"] = "bytes=";
-                  await req.continue({ headers });
-                } else {
-                  await req.continue();
-                }
-              });
+              try {
+                // test edit request headers fail
+                page.on("request", async (req) => {
+                  if (req.url().includes("m4s")) {
+                    let headers = await req.headers();
+                    headers["range"] = "bytes=";
+                    await req.continue({ headers });
+                  } else {
+                    await req.continue();
+                  }
+                });
+              } catch (err) {
+                await browser.close();
+              }
             } else if (type === "response") {
-              // test edit response data fail
-              page.on("request", async (req) => {
-                if (req.url().includes("m4s")) {
-                  await req.respond({
-                    status: 200,
-                    headers: {
-                      "Access-Control-Allow-Origin": "*",
-                    },
-                    contentType: "application/json; charset=utf-8",
-                    body: JSON.stringify({ code: 0, data: "hello i'm test" }),
-                  });
-                  await req.continue();
-                } else {
-                  await req.continue();
-                }
-              });
+              try {
+                // test edit response data fail
+                page.on("request", async (req) => {
+                  if (req.url().includes("m4s")) {
+                    await req.respond({
+                      status: 200,
+                      headers: {
+                        "Access-Control-Allow-Origin": "*",
+                      },
+                      contentType: "application/json; charset=utf-8",
+                      body: JSON.stringify({ code: 0, data: "hello i'm test" }),
+                    });
+                  } else {
+                    await req.continue();
+                  }
+                });
+              } catch (err) {
+                await browser.close();
+              }
             } else if (type === "m4s") {
-              // test all m4s requests fail
-              page.on("request", async (req) => {
-                if (req.url().includes("m4s")) {
-                  await req.abort();
-                } else {
-                  await req.continue();
-                }
-              });
+              try {
+                // test all m4s requests fail
+                page.on("request", async (req) => {
+                  if (req.url().includes("m4s")) {
+                    await req.abort();
+                  } else {
+                    await req.continue();
+                  }
+                });
+              } catch (err) {
+                await browser.close();
+              }
             } else {
-              // test source fail
-              page.on("request", async (req) => {
-                if (
-                  [
-                    //   "xhr",
-                    "image",
-                    "media",
-                    //   "font",
-                    //   "stylesheet",
-                    //   "script",
-                    "webp",
-                  ].indexOf(req.resourceType()) !== -1
-                ) {
-                  await req.abort();
-                } else {
-                  await req.continue();
-                }
-              });
+              try {
+                // test source fail
+                page.on("request", async (req) => {
+                  if (
+                    [
+                      //   "xhr",
+                      "image",
+                      "media",
+                      //   "font",
+                      //   "stylesheet",
+                      //   "script",
+                      "webp",
+                    ].indexOf(req.resourceType()) !== -1
+                  ) {
+                    await req.abort();
+                  } else {
+                    await req.continue();
+                  }
+                });
+              } catch (err) {
+                await browser.close();
+              }
             }
             page.on("response", async (res) => {
-              if (res["_url"].includes("m4s")) {
-                rescount = rescount + 1;
+              try {
+                if (res["_url"].includes("m4s")) {
+                  rescount = rescount + 1;
+                  if (rescount > 15 || errcount > 20) {
+                    const pngpath = imgurl + type + ".png";
+                    await page.screenshot({
+                      path: pngpath,
+                      // fullPage: true,
+                    });
+                    await browser.close();
+                    await imgtransfertohttp(type, pngpath);
+                    await delay(2000);
+
+                    num = num + 1;
+                    if (num > 5) {
+                      console.log("done");
+                      requestnum = 0;
+                    } else {
+                      (async () => {
+                        runfuzz(tmp[num]);
+                      })();
+                    }
+                  }
+                }
+              } catch (err) {
+                await browser.close();
+              }
+            });
+
+            page.on("requestfailed", async (req) => {
+              try {
+                errcount = errcount + 1;
                 if (rescount > 15 || errcount > 20) {
                   const pngpath = imgurl + type + ".png";
                   await page.screenshot({
@@ -192,30 +249,8 @@ const runfuzz = async (type) => {
                     })();
                   }
                 }
-              }
-            });
-
-            page.on("requestfailed", async (req) => {
-              errcount = errcount + 1;
-              if (rescount > 15 || errcount > 20) {
-                const pngpath = imgurl + type + ".png";
-                await page.screenshot({
-                  path: pngpath,
-                  // fullPage: true,
-                });
+              } catch (err) {
                 await browser.close();
-                await imgtransfertohttp(type, pngpath);
-                await delay(2000);
-
-                num = num + 1;
-                if (num > 5) {
-                  console.log("done");
-                  requestnum = 0;
-                } else {
-                  (async () => {
-                    runfuzz(tmp[num]);
-                  })();
-                }
               }
             });
             await page.goto(
