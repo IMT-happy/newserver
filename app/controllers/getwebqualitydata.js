@@ -56,7 +56,7 @@ const getdatafromdbeach = () => {
           if (err) throw err;
           var dbo = db.db("qualitydb");
           var mysort = { date: -1 };
-          var whereStr = { name: "bilibili" };
+          var whereStr = { name: "IMT" };
           dbo
             .collection("eachquality")
             .find(whereStr)
@@ -133,16 +133,16 @@ const getnewquailtydata = async (ctx, next) => {
     const resultdata = await getdatafromdb().then((data) => {
       return data;
     });
-    const bilibiliresultdata = await getdatafromdbeach().then((data) => {
+    const IMTresultdata = await getdatafromdbeach().then((data) => {
       return data;
     });
 
-    if (resultdata && bilibiliresultdata) {
+    if (resultdata && IMTresultdata) {
       var finalobj = {
         code: "200",
         msg: "success",
         data: resultdata,
-        bilidata: bilibiliresultdata,
+        bilidata: IMTresultdata,
       };
     } else {
       var finalobj = {

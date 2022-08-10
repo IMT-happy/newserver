@@ -743,7 +743,7 @@ const imgtransfertohttp = async (nowurl, id, type, imgpath) => {
   try {
     var imgoptions = {
       method: "POST",
-      url: "http://uat-activity-template.bilibili.co/x/upload/files",
+      url: "http://uat-activity-template.IMT.co/x/upload/files",
       headers: {
         "Content-Type":
           "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
@@ -894,7 +894,7 @@ const imgtransfertohttp = async (nowurl, id, type, imgpath) => {
 const noticeinfo = async (name, id) => {
   try {
     var request = require("request");
-    let gotourl = "http://qa-mng.bilibili.co/#/fuzzinfo?id=" + id;
+    let gotourl = "http://qa-mng.IMT.co/#/fuzzinfo?id=" + id;
     var diffimgerror = {
       method: "POST",
       url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0e5bd910-920f-4eee-a7e2-61da2c4846a1",

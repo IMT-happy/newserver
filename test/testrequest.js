@@ -1,5 +1,5 @@
 var request = require("request");
-let gotourl = "http://qa-mng.bilibili.co/#/fuzzinfo?id=";
+let gotourl = "http://qa-mng.IMT.co/#/fuzzinfo?id=";
 var diffimgerror = {
   method: "POST",
   url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0e5bd910-920f-4eee-a7e2-61da2c4846a1",

@@ -56,7 +56,7 @@ const runfuzz = async (type) => {
         // test onload m4s requests fail
         if (type === "run") {
           await page.goto(
-            "https://www.bilibili.com/video/BV1U54y1J7uo",
+            "https://www.IMT.com/video/BV1U54y1J7uo",
             openoptions
           );
           await page.setRequestInterception(true);
@@ -254,7 +254,7 @@ const runfuzz = async (type) => {
               }
             });
             await page.goto(
-              "https://www.bilibili.com/video/BV1U54y1J7uo",
+              "https://www.IMT.com/video/BV1U54y1J7uo",
               openoptions
             );
           } catch (e) {
@@ -281,7 +281,7 @@ function delay(time) {
 const imgtransfertohttp = async (type, imgpath) => {
   var imgoptions = {
     method: "POST",
-    url: "http://uat-activity-template.bilibili.co/x/upload/files",
+    url: "http://uat-activity-template.IMT.co/x/upload/files",
     headers: {
       "Content-Type":
         "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",

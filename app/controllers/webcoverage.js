@@ -513,7 +513,7 @@ const switchcoverage = (obj) => {
       if (JSON.parse(obj.isSelected)) {
         console.log("start open");
         if (obj.platform.toLowerCase() === "h5") {
-          // cd /data1/newproserver//h5/ &&  git clone -b master https://git.bilibili.co/activity-page/wintervssummer-1st
+          // cd /data1/newproserver//h5/ &&  git clone -b master https://git.IMT.co/activity-page/wintervssummer-1st
           var cmdStr =
             " cd /data1/hserver " +
             " &&  " +
@@ -526,7 +526,7 @@ const switchcoverage = (obj) => {
           var cmdStr =
             "git clone -b" + " " + obj.branch + " " + obj.applicationname;
         }
-        // var cmdStr = 'git clone -b' + ' ' + obj.branch + ' ' + obj.applicationname //' master https://git.bilibili.co/crayon/jinkela.git'  // https://git.bilibili.co/crayon/jinkela.git
+        // var cmdStr = 'git clone -b' + ' ' + obj.branch + ' ' + obj.applicationname //' master https://git.IMT.co/crayon/jinkela.git'  // https://git.IMT.co/crayon/jinkela.git
         console.log(cmdStr);
         exec(cmdStr, function (err, stdout, stderr) {
           if (err) {
