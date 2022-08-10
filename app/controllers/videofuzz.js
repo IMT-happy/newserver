@@ -384,7 +384,7 @@ const imgtransfertohttp = async (type, imgpath) => {
     } else {
       var diffimgerror = {
         method: "POST",
-        url: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=279cea5c-03e3-4d88-a224-ab9b08a9ed67",
+        url: "https://IMTxxx/cgi-bin/webhook/send?key=279cea5c-03e3-4d88-a224-ab9b08a9ed67",
         headers: {
           "Content-Type": "application/json",
         },
